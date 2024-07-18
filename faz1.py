@@ -37,6 +37,35 @@ class ConstantNode(Node):
     def evaluate(self,x):
         return self.value
         
+# Example 1: y = sin(x) + cos(x)
+example1 = OperandNode('+', FunctionNode('sin', VariableNode()), FunctionNode('cos', VariableNode()))
+
+# Example 2: y = tanh(x) * (x + 1)
+example2 = OperandNode('*', FunctionNode('tanh', VariableNode()), OperandNode('+', VariableNode(), ConstantNode(1)))
+
+# Example 3: y = (x - 3) / (x + 2)
+example3 = OperandNode('/', OperandNode('-', VariableNode(), ConstantNode(3)), OperandNode('+', VariableNode(), ConstantNode(2)))
+
+# Function to evaluate an expression
+def evaluate_expression_tree(tree, x):
+    return tree.evaluate(x)
+
+# Test the examples
+x_values = [0, 1, 2, 3]
+
+print("Example 1: y = sin(x) + cos(x)")
+for x in x_values:
+    print(f"x = {x}, y = {evaluate_expression_tree(example1, x)}")
+
+print("\nExample 2: y = tanh(x) * (x + 1)")
+for x in x_values:
+    print(f"x = {x}, y = {evaluate_expression_tree(example2, x)}")
+
+print("\nExample 3: y = (x - 3) / (x + 2)")
+for x in x_values:
+    print(f"x = {x}, y = {evaluate_expression_tree(example3, x)}")
+
+        
             
         
             
