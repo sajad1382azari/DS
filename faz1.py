@@ -25,10 +25,14 @@ class FunctionNode(Node):
         value = self.child.evaluate(x)
         if self.function == "tanh" :
             return  math.tanh(value)
-        if self.function == "sin" :
+        elif self.function == "sin" :
             return  math.sin(value)
-        if self.function == "cos" :
+        elif self.function == "cos" :
             return  math.cos(value)
+        else:
+            raise ValueError(f"Unknown function: {self.function}")
+
+        
 class VariableNode(Node) :
     def evaluate(self,x) :
         return x
