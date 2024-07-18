@@ -3,7 +3,7 @@ class Node:
     def evaluate(self, x):
         raise NotImplementedError("Subclasses should implement this method!")
 class operandNude(Node):
-    def__init__(self,operator,left,right):
+    def init(self,operator,left,right):
         self.operator=operator
         self.left=left
         self.right=right
@@ -17,7 +17,7 @@ def evaluate(self,x):
     elif self.operator=="/":
         return self.left.evaluate(x)/self.right.evaluate(x)
 class FunctionNode(Node):
-    def __init__(self,function,child):
+    def init(self,function,child):
         self.function = function
         self.child = child
 
@@ -37,7 +37,7 @@ class VariableNode(Node) :
     def evaluate(self,x) :
         return x
 class ConstantNode(Node):
-    def __init__(self,value):
+    def init(self,value):
         self.value = value
 
     def evaluate(self,x):
