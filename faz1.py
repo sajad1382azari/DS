@@ -1,4 +1,7 @@
 import math
+class Node:
+    def evaluate(self, x):
+        raise NotImplementedError("Subclasses should implement this method!")
 class operandNude(Node):
     def__init__(self,operator,left,right):
         self.operator=operator
