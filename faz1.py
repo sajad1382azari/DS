@@ -1,46 +1,52 @@
 import math
+
 class Node:
     def evaluate(self, x):
         raise NotImplementedError("Subclasses should implement this method!")
-class operandNude(Node):
-    def init(self,operator,left,right):
-        self.operator=operator
-        self.left=left
-        self.right=right
-def evaluate(self,x):
-    if self.operator=="+":
-        return self.left.evaluate(x)+self.right.evaluate(x)
-    elif self.operator=="-":
-        return self.left.evaluate(x)-self.right.evaluate(x)
-    elif self.operator=="*":
-        return self.left.evaluate(x)*self.right.evaluate(x)
-    elif self.operator=="/":
-        return self.left.evaluate(x)/self.right.evaluate(x)
+
+class OperandNode(Node):
+    def __init__(self, operator, left, right):
+        self.operator = operator
+        self.left = left
+        self.right = right
+
+    def evaluate(self, x):
+        if self.operator == '+':
+            return self.left.evaluate(x) + self.right.evaluate(x)
+        elif self.operator == '-':
+            return self.left.evaluate(x) - self.right.evaluate(x)
+        elif self.operator == '*':
+            return self.left.evaluate(x) * self.right.evaluate(x)
+        elif self.operator == '/':
+            return self.left.evaluate(x) / self.right.evaluate(x)
+        else:
+            raise ValueError(f"Unknown operator: {self.operator}")
+
 class FunctionNode(Node):
-    def init(self,function,child):
+    def __init__(self, function, child):
         self.function = function
         self.child = child
 
-    def evaluate(self,x):
+    def evaluate(self, x):
         value = self.child.evaluate(x)
-        if self.function == "tanh" :
-            return  math.tanh(value)
-        elif self.function == "sin" :
-            return  math.sin(value)
-        elif self.function == "cos" :
-            return  math.cos(value)
+        if self.function == 'tanh':
+            return math.tanh(value)
+        elif self.function == 'sin':
+            return math.sin(value)
+        elif self.function == 'cos':
+            return math.cos(value)
         else:
             raise ValueError(f"Unknown function: {self.function}")
 
-        
-class VariableNode(Node) :
-    def evaluate(self,x) :
+class VariableNode(Node):
+    def evaluate(self, x):
         return x
+
 class ConstantNode(Node):
-    def init(self,value):
+    def __init__(self, value):
         self.value = value
 
-    def evaluate(self,x):
+    def evaluate(self, x):
         return self.value
         
 # Example 1: y = sin(x) + cos(x)
