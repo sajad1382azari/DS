@@ -1,5 +1,5 @@
 import math
-
+print("hi")
 class operandNude(Node):
     def__init__(self,operator,left,right):
         self.operator=operator
